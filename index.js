@@ -16,71 +16,81 @@ function main(){
     let includelower=checkLower.checked;
     let includenumbers=checkNumbers.checked;
     let includesymbols=checkSymboles.checked;
-    let number_of_chars=eval(number.textContent);
-    if(!includeupper&&!includelower&&!includenumbers&&!includesymbols){
-        barone.style.backgroundColor="";
-        bartwo.style.backgroundColor="";
-        barthree.style.backgroundColor="";
-        barfour.style.backgroundColor="";
-        }
-        if((number_of_chars<=10&&number_of_chars!=0)&&(includeupper)){barone.style.backgroundColor="red";
-            statuss.innerHTML="WEAK";
-            bartwo.style.backgroundColor="";
-            barthree.style.backgroundColor="";
-            barfour.style.backgroundColor="";
-            }
-    if((number_of_chars>10&&number_of_chars!=0)&&(includeupper)){barone.style.backgroundColor="yellow";
-    bartwo.style.backgroundColor="yellow";
-    statuss.innerHTML="MEDIUM";
-    barthree.style.backgroundColor="";
-    barfour.style.backgroundColor="";
+    let number_of_chars = parseInt(number.textContent);
+    statuss.innerHTML = "";
+    barone.style.backgroundColor = "";
+    bartwo.style.backgroundColor = "";
+    barthree.style.backgroundColor = "";
+    barfour.style.backgroundColor = "";
+
+    if (number_of_chars === 0 || (!includeupper && !includelower && !includenumbers && !includesymbols)) {
+        return; // Exit function if no checkboxes are checked or number is 0
     }
-    if((number_of_chars>=8&&number_of_chars!=0)&&(includeupper||includesymbols)&&(includelower||includenumbers)){barone.style.backgroundColor="yellow";
-    bartwo.style.backgroundColor="yellow";
-    statuss.innerHTML="MEDIUM";
-    barthree.style.backgroundColor="yellow";
-    barfour.style.backgroundColor="";
+
+    // Determine strength based on criteria
+    if (number_of_chars <= 10 && includeupper) {
+        barone.style.backgroundColor = "red";
+        statuss.innerHTML = "WEAK";
     }
-    if((number_of_chars>6&&number_of_chars!=0)&&(includeupper&&includesymbols)&&(includelower&&includenumbers)){
-        barone.style.backgroundColor="green";
-        bartwo.style.backgroundColor="green";
-        statuss.innerHTML="STRONG";
-        barthree.style.backgroundColor="green";
-        barfour.style.backgroundColor="green";
-        }
-        if((number_of_chars>10&&number_of_chars!=0)&&includelower){
-            barone.style.backgroundColor="yellow";
-        bartwo.style.backgroundColor="yellow";
-        statuss.innerHTML="MEDIUM";
-        barthree.style.backgroundColor="";
-        barfour.style.backgroundColor="";
-        }else {
-            barone.style.backgroundColor="red";
-            bartwo.style.backgroundColor="";
-            statuss.innerHTML="WEAK";
-            barthree.style.backgroundColor="";
-            barfour.style.backgroundColor="";
+
+    if (number_of_chars > 10 && includeupper) {
+        barone.style.backgroundColor = "yellow";
+        bartwo.style.backgroundColor = "yellow";
+        statuss.innerHTML = "MEDIUM";
+    }
+
+    if (number_of_chars >= 8 && (includeupper || includesymbols) && (includelower || includenumbers)) {
+        barone.style.backgroundColor = "yellow";
+        bartwo.style.backgroundColor = "yellow";
+        statuss.innerHTML = "MEDIUM";
+        barthree.style.backgroundColor = "yellow";
+    }
+
+    if (number_of_chars > 10 && includelower) {
+        barone.style.backgroundColor = "yellow";
+        bartwo.style.backgroundColor = "yellow";
+        statuss.innerHTML = "MEDIUM";
+    }
+
+    if (number_of_chars > 6 && includeupper && includesymbols && includelower && includenumbers) {
+        barone.style.backgroundColor = "green";
+        bartwo.style.backgroundColor = "green";
+        statuss.innerHTML = "STRONG";
+        barthree.style.backgroundColor = "green";
+        barfour.style.backgroundColor = "green";
+    }
+            let result="";
+            let characrets="";
+            if (includeupper) {
+                characrets += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                }
+                
+                if (includelower) {
+                    characrets += 'abcdefghijklmnopqrstuvwxyz';
             }
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]};:\'",<.>/?`~';
-            let max=0;
-            let min=0;
-            let result = '';
-            if(includelower){}
-            if(includeupper){}
-            if(includenumbers){}
-            if(includesymbols){}
+          
+            if (includenumbers) {
+            characrets += '0123456789';
+            }
             
-                        
-}
+            if (includenumbers) {
+                characrets += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+                }
+                for (let i = 0; i < number_of_chars; i++) {
+                    const randomIndex = Math.floor(Math.random() * characrets.length);
+                    result += characrets[randomIndex];
+                }
+output.innerHTML=result;
+            }
             function listenupper(){
                 checkUpper.checked;
                 main();
 }
 function listenlower(){
-checkLower.checked;    
-main();
-}
-function listennubers(){
+    checkLower.checked;    
+    main();
+    }
+    function listennubers(){
 checkNumbers.checked;    
 main();
 }
@@ -97,3 +107,7 @@ checkSymboles.addEventListener('input',listensymbols);
 checkNumbers.addEventListener('input',listennubers);
 checkLower.addEventListener('input',listenlower);
 checkUpper.addEventListener('input',listenupper);
+validate.addEventListener("click", function() {
+    number.textContent = range.value;
+    main();
+});
