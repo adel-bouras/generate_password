@@ -81,6 +81,7 @@ function main(){
                     result += characrets[randomIndex];
                 }
 output.innerHTML=result;
+output.style.color="white";
             }
             function listenupper(){
                 checkUpper.checked;
