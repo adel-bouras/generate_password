@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENERATE PASSWORD</title>
+</head>
+<body>
+    <div id="main">
+
+        <h3 id="title">Password Generator</h3> 
+    <div id="output"><h1 id="outputtxt">FG789S7FG8</h1><img src="copy.png" alt="copy"></div>
+        <div id="props">
+            <div id="chars">
+                <span>Character Length</span>
+            <span id="number">0</span>
+            </div>
+    <input step="1" type="range" min="0" max="20" value="0" id="range">
+<ul>
+                <li><input id="checkone" class="checkb" type="checkbox">&#160 &#160 &#160 Include Uppercase Letters</li>
+                <li><input id="checktwo" class="checkb" type="checkbox">&#160 &#160 &#160 Include Lowercase Letters</li>
+                <li><input id="checkthree" class="checkb" type="checkbox">&#160 &#160 &#160 Include Numbers</li>
+                <li><input id="checkfour" class="checkb" type="checkbox">&#160 &#160 &#160 Include Symboles</li>
+    </ul>
+<div id="strength">
+    <h3>STRENGTH</h3>
+    <div id="last">
+        <h3 id="status"></h3>
+        <span id="one" class="bars"></span>
+        <span id="two" class="bars"></span>
+        <span id="three" class="bars"></span>
+        <span id="four" class="bars"></span>
+    </div>
+    </div>
+<button id="validate" >GENERATE </button>
+</div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
